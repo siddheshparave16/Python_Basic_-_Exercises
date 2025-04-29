@@ -1,12 +1,10 @@
 Let Us Python 2024 - Exercises and Notes
-This repository contains Python exercises, notes, and solutions based on the book Let Us Python 2024. It includes various concepts from beginner to advanced levels, organized chapter-wise.
+
+This repository contains Python exercises, notes, and solutions based on the book Let Us Python 5th Edition by Yashavant Kanetkar and Aditya Kanetkar. It includes various concepts from beginner to advanced levels, organized chapter-wise.
 
 📂 Repository Structure
 The repository is structured into chapters and topics, each covering specific concepts in Python. Below is a brief overview:
 
-mathematica
-Copy
-Edit
 Let_Us_Python_2024/
 ├── Chapter_16_Modules&Packages/
 ├── Chapter_23_File_Input_Output/
@@ -29,6 +27,8 @@ Let_Us_Python_2024/
 ├── Console_Input_Output.py
 ├── main.py
 ├── test_run.py
+
+
 📝 Key Topics Covered
 Modules & Packages: Understanding modular programming in Python.
 
