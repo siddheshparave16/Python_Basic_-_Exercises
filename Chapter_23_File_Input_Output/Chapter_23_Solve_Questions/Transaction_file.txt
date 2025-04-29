@@ -1,0 +1,1 @@
+[{"roll_no": 102, "name": "Kavya Mehta", "code": "add"}, {"roll_no": 103, "name": "Aditya Singh", "code": "delete"}, {"roll_no": 104, "name": "Neha Gupta", "code": "delete"}, {"roll_no": 105, "name": "Ajit Rathod", "code": "add"}, {"roll_no": 107, "name": "Rohan Verma", "code": "add"}]

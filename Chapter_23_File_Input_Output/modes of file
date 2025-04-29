@@ -1,0 +1,66 @@
+
+Detailed Explanation of Each Mode:
+1. r (Read Only):
+Used to read files.
+The file must exist; otherwise, it raises a FileNotFoundError.
+The file's contents cannot be modified.
+
+
+2. r+ (Read and Write):
+Allows both reading and writing.
+The file must exist; otherwise, it raises a FileNotFoundError.
+Writing begins at the start of the file (overwrites content unless handled carefully).
+
+
+3. w (Write Only):
+Used for writing.
+If the file already exists, its contents are truncated (erased).
+If the file doesn't exist, it is created.
+Reading is not allowed.
+
+
+4. w+ (Write and Read):
+Allows both writing and reading.
+If the file exists, its contents are truncated (erased).
+If the file doesn't exist, it is created.
+Writing starts at the start of the file.
+
+
+5. a (Append Only):
+Used for appending to a file.
+If the file doesn't exist, it is created.
+Writing occurs at the end of the file, without truncating the existing content.
+Reading is not allowed.
+
+
+6. a+ (Append and Read):
+Allows both appending and reading.
+If the file doesn't exist, it is created.
+Writing occurs at the end of the file.
+Reading occurs from the start of the file, but writing always appends to the end.
+
+
+
+# The seek() function sets the position of a file pointer and
+  the tell() function returns the current position of a file pointer.
+
+
+# Serialization and Deserialization notes
+
+For your example,
+json.dump() writes directly to the file, and json.load() reads from it.
+If you wanted to use a string for serialization instead of a file, you'd use json.dumps() and json.loads()
+
+
+
+
+
+
+
+
+
+
+
+
+
+

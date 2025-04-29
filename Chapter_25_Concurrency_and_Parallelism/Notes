@@ -1,0 +1,111 @@
+"""
+
+This file Content theory part for Chapter_25 Questions.
+
+"""
+
+"""
+Que 1:- What is the difference between multi-processing and multi-threading ?
+
++---------------------------+--------------------------------------------------------+----------------------------------------------------------+
+| **Aspect**                | **Multi-processing**                                  | **Multi-threading**                                      |
++---------------------------+--------------------------------------------------------+----------------------------------------------------------+
+| **Definition**             | Multiple processes running independently               | Multiple threads running within a single process         |
++---------------------------+--------------------------------------------------------+----------------------------------------------------------+
+| **Memory Usage**           | Each process has its own memory space                  | Threads share the same memory space                       |
++---------------------------+--------------------------------------------------------+----------------------------------------------------------+
+| **Performance**            | Better for CPU-bound tasks                            | Better for I/O-bound tasks                               |
++---------------------------+--------------------------------------------------------+----------------------------------------------------------+
+| **Isolation**              | Processes are isolated, one process failure doesn't affect others | Threads are not isolated, a crash in one thread can affect the entire process |
++---------------------------+--------------------------------------------------------+----------------------------------------------------------+
+| **Concurrency**            | Achieves true concurrency using multiple CPU cores     | Achieves concurrency but limited by the Global Interpreter Lock (GIL) in Python |
++---------------------------+--------------------------------------------------------+----------------------------------------------------------+
+| **Communication**          | More complex, requires inter-process communication (IPC) mechanisms like pipes or shared memory | Easier communication, but requires synchronization to avoid race conditions |
++---------------------------+--------------------------------------------------------+----------------------------------------------------------+
+| **Fault Tolerance**        | Better fault tolerance as processes are independent    | Lower fault tolerance since threads share the same memory space |
++---------------------------+--------------------------------------------------------+----------------------------------------------------------+
+
+
+Difference between Multi-processing and Multi-threading:
+
+Definition:
+Multi-processing involves multiple processes running independently, each with its own memory space.
+Multi-threading involves multiple threads running within a single process, sharing the same memory space.
+
+
+Memory Usage:
+Multi-processing: Each process has its own memory, so they do not share state directly.
+Multi-threading: Threads share the same memory space, which makes communication between them easier but can lead to potential issues like race conditions.
+
+
+Performance:
+Multi-processing: Better for CPU-bound tasks because each process can run on a separate core.
+Multi-threading: Better for I/O-bound tasks since threads can work concurrently while waiting for I/O operations, but it doesn't fully utilize multiple CPU cores due to Python's Global Interpreter Lock (GIL).
+
+
+Isolation:
+Multi-processing: Processes are isolated from each other, so an error in one process doesn't affect others.
+Multi-threading: Threads are not isolated; a crash in one thread can potentially bring down the entire process.
+
+
+Concurrency:
+Multi-processing: Achieves true concurrency since each process runs independently, making full use of multiple CPU cores.
+Multi-threading: Achieves concurrency by interleaving threads, but due to the GIL in CPython, true parallel execution is limited in CPU-bound tasks.
+
+
+Communication:
+Multi-processing: Inter-process communication (IPC) is more complex and requires special mechanisms like pipes or shared memory.
+Multi-threading: Threads can share data easily, but synchronization mechanisms like locks, semaphores, or conditions are needed to avoid race conditions.
+
+
+"""
+
+
+"""
+Que 2: what is difference between preemptive multithreading and cooperative multithreading ?
+
+
++-----------------------------+-----------------------------------------------------------+---------------------------------------------------------+
+| **Aspect**                  | **Preemptive Multithreading**                             | **Cooperative Multithreading**                           |
++-----------------------------+-----------------------------------------------------------+---------------------------------------------------------+
+| **Thread Control**           | The operating system decides when to switch to another thread. | The threads decide when to switch to another thread.     |
++-----------------------------+-----------------------------------------------------------+---------------------------------------------------------+
+| **Thread Switching**         | The operating system can interrupt a running thread at any time to switch to another thread. | A thread must explicitly decide to switch to another thread. |
++-----------------------------+-----------------------------------------------------------+---------------------------------------------------------+
+| **Concurrency**              | Better multitasking as the operating system can switch between threads automatically. | Less efficient because threads may run indefinitely if they don't decide to switch. |
++-----------------------------+-----------------------------------------------------------+---------------------------------------------------------+
+| **CPU Utilization**          | Better CPU utilization because the OS can switch to another thread when one is waiting or blocked. | Less efficient as a thread that doesn't switch could use up all CPU time. |
++-----------------------------+-----------------------------------------------------------+---------------------------------------------------------+
+| **Fault Tolerance**          | Less likely for a single thread to monopolize the CPU, leading to better system stability. | A thread that doesn't switch could freeze the system by monopolizing CPU time. |
++-----------------------------+-----------------------------------------------------------+---------------------------------------------------------+
+| **Example**                  | Used in modern operating systems like Windows, Linux.     | Used in some older systems or simpler environments like early versions of Python. |
++-----------------------------+-----------------------------------------------------------+---------------------------------------------------------+
+| **Complexity**               | More complex because the operating system must manage thread scheduling. | Simpler to implement, but less flexible in handling real-time situations. |
++-----------------------------+-----------------------------------------------------------+---------------------------------------------------------+
+
+
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

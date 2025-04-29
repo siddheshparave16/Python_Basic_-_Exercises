@@ -1,0 +1,10 @@
+num = 17 cube = 4913
+num = 11 cube = 1331
+num = 10 cube = 1000
+num = 13 cube = 2197
+num = 16 cube = 4096
+num = 18 cube = 5832
+num = 19 cube = 6859
+num = 15 cube = 3375
+num = 16 cube = 4096
+num = 19 cube = 6859

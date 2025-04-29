@@ -1,0 +1,113 @@
+The following synchronization mechanisms are commonly used for sharing resources among multiple threads:
+
+Lock (Lock): Ensures that only one thread can access a shared resource at a time. Other threads must wait until the lock is released.
+
+Reentrant Lock (RLock): Similar to a Lock, but allows the same thread to acquire the lock multiple times without blocking.
+
+Semaphore: Controls access to a shared resource by limiting the number of threads that can access it concurrently. It is initialized with a value that specifies the maximum number of threads that can acquire the semaphore at the same time.
+
+Condition: Used for inter-thread communication, allowing one thread to wait until some condition is met, while another thread signals the condition.
+
+Event: Allows threads to wait for a specific event to occur. One thread sets the event, while others wait for the signal to proceed.
+
+Barrier: A synchronization point where threads wait until a certain number of threads have reached the barrier, then all threads are released simultaneously.
+
+These mechanisms help prevent race conditions, ensure mutual exclusion, and coordinate the execution of threads when sharing resources.
+
+
+
+
+
+# difference between lock and rlock in text chart
+
+
++-----------------------------+-------------------------------------------+------------------------------------------------+
+|        Feature              |                   Lock                    |               RLock (Reentrant Lock)           |
++-----------------------------+-------------------------------------------+------------------------------------------------+
+| Basic Purpose               | A simple lock that can be acquired and    | A lock that allows a thread to acquire it      |
+|                             | released.                                 | multiple times without blocking itself.        |
++-----------------------------+-------------------------------------------+------------------------------------------------+
+| Acquiring the Lock          | Can only be acquired once by the same     | Can be acquired multiple times by the same     |
+|                             | thread.                                   | thread.                                        |
++-----------------------------+-------------------------------------------+------------------------------------------------+
+| Releasing the Lock          | Must be released by the thread that       | Must be released the same number of times it   |
+|                             | acquired it.                              | was acquired, by the same thread.              |
++-----------------------------+-------------------------------------------+------------------------------------------------+
+| Deadlock Risk               | Can lead to deadlock if a thread tries    | Prevents deadlock for the thread that acquires |
+|                             | to acquire a lock that it already holds.  | the lock multiple times.                       |
++-----------------------------+-------------------------------------------+------------------------------------------------+
+| Use Case                    | Suitable for scenarios where a lock is    | Useful in recursive situations or when a thread |
+|                             | not being re-acquired by the same thread. | needs to re-enter a critical section.           |
++-----------------------------+-------------------------------------------+------------------------------------------------+
+| acquire() Behavior          | Blocks until the lock is available.       | Blocks until the lock is available, but allows |
+|                             |                                           | the same thread to acquire it multiple times.  |
++-----------------------------+-------------------------------------------+------------------------------------------------+
+| release() Behavior          | Can be released once.                     | Can be released multiple times, corresponding  |
+|                             |                                           | to the number of acquire() calls.              |
++-----------------------------+-------------------------------------------+------------------------------------------------+
+
+
+
+
+
+
+When to Use Condition Instead:
+Complex Condition Checks:
+
+If you need to coordinate threads based on multiple or complex conditions (e.g., "buffer not full" for producers and "buffer not empty" for consumers), a Condition is better suited.
+Fine-Grained Control:
+
+Condition allows threads to wait for specific conditions in a loop (e.g., while a buffer is full or empty). This is often necessary in real-world producer-consumer problems with bounded buffers.
+Multiple Producers/Consumers:
+
+When multiple producers and consumers interact with shared data, Condition provides more robust coordination via locks.
+
+
+
+
+
+
+
+
+Simplified Comparison:
+Use Event if:
+
+The synchronization requirement is simple (e.g., notify when data is ready).
+You don't need complex condition checks or multiple signals.
+You prefer to avoid explicit locks.
+Use Condition if:
+
+The producer and consumer interact via complex or multiple conditions.
+The shared resource has multiple states (e.g., full, empty, partially full).
+Multiple producers/consumers need fine-grained coordination.
+
+
+
+
+
+
+Que :-
+
+
+When thread T1 waits for thread T2 to finish and thread T2 waits for thread T1 to finish, this situation creates a deadlock.
+
+What is a Deadlock?
+A deadlock is a state in which two or more threads are blocked forever, waiting for each other to release resources or signals that they need to continue execution. In this case, each thread is waiting on the other to finish, and neither can proceed. This results in both threads being stuck indefinitely.
+
+How does a Deadlock Happen in Your Case?
+Assume:
+
+Thread T1 is waiting for Thread T2 to finish (perhaps using T2.join() or a synchronization mechanism).
+Thread T2 is waiting for Thread T1 to finish (again, possibly via T1.join() or a similar method).
+Here's a breakdown:
+
+T1 starts and waits for T2 to finish. It calls something like T2.join() to wait for T2 to finish execution.
+T2 starts and waits for T1 to finish. It calls T1.join() to wait for T1 to finish execution.
+Since both threads are now waiting for each other to finish, neither can proceed. This forms a cycle of dependency where:
+
+T1 is waiting for T2.
+T2 is waiting for T1.
+Result:
+Both threads become stuck in their waiting state.
+Neither thread will be able to finish, and the program will hang indefinitely at the join() (or similar waiting method) calls.
+The program does not complete and requires external intervention (e.g., user abort) to terminate.
